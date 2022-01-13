@@ -13,6 +13,8 @@ namespace MyLibrary
 {
     public partial class Login : Form
     {
+        //kad se korisnik uspjesno loira - tada cemo pozvati ovati event:
+        public event EventHandler UserLoggedIn; 
         public Login()
         {
             InitializeComponent();
@@ -41,6 +43,10 @@ namespace MyLibrary
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            if (UserLoggedIn != null)
+            {
+                UserLoggedIn(this, EventArgs.Empty);
+            }
             if (UserIsValid())
             {
                 Close();
